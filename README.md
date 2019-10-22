@@ -1,6 +1,7 @@
 # at_coder_template
 ## 目的
-VScodeでabcのDランク問題（400点）が取れるように練習する
+* VScodeでabcのDランク問題（400点）が取れるように練習するために問題を収集した
+* D問題は計算量の見積もりと、計算量を削減するアルゴリズムを知っていることがポイント
 
 ## 問題へのリンク
 * [ABC 142 D](https://atcoder.jp/contests/abc142/tasks/abc142_d)
