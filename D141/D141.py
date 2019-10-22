@@ -16,6 +16,23 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
-num_list = [int(item) for item in input().split()]
-print('B', num_list)
+import heapq as hp
+N, M = [int(item) for item in input().split()]
+price_list = sorted([-1 * int(item) for item in input().split()])
 
+total_m = 0
+
+def discount(price_list, ticket_num):
+    total_ticket =0
+    hp.heapify(price_list)
+
+    while total_ticket < ticket_num:
+        temp = hp.heappop(price_list)
+        hp.heappush(price_list, -1* (-1*temp//2))
+        total_ticket += 1
+
+    return price_list
+
+res = discount(price_list, M)
+print(res)
+print(-1 * sum(res))

@@ -15,10 +15,29 @@
 
 * ABC 142 D 
   * 方針
+    * 素数の探索は $O{(\sqrt{N})}$
+    * 約数を求めるとき(因数分解)も $O{(\sqrt{N})}$
+
   * 実装
+    * 素数探索`for i in range(int(math.sqrt(N))+1)`
+    * 最大公約数はユークリッドの互除法` A, B = B, A % B `
+    * 因数分解はの時に割り残った値を約数に加えることを忘れない
+  * おまけ
+    * 最小公倍数は ${A  B / gdc}$
+
 * ABC 141 D 
   *  方針
+     *  N個の商品に対してM個の商品券を使う際、一枚づつ常に最大値の商品に使用する。
+     *  価格が変更された際の並び替えのために、優先度キューアルゴリズム（ヒープソート）を使用する
   *  実装
+     *  ヒープの作成`heapq.heapify(list)`
+     *  最大値の抽出は要素を負にしておいて最小値を抽出する`heapq.heappop(heap)`を使用する
+     *  割引後の価格は`heapq.heappush(heap, item)`で追加する
+
+  * おまけ
+    * [ソートのアルゴリズム](http://sevendays-study.com/algorithm/day3.html)
+    * [python標準ライブラリでのヒープキューの使用例](https://docs.python.org/ja/3/library/heapq.html)
+  
 * ABC 140 D 
   * 方針
   * 実装

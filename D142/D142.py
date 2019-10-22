@@ -18,20 +18,45 @@ sys.stdin=f
 # 以下ペースト可
 import math 
 
-A, B = sorted([int(item) for item in input().split()])
+A, B = [int(item) for item in input().split()]
 
 def gdc(A, B):
-
-    while A > 0:
-        A, B = B % A, A
-    return B
+    if B == 0:
+        return A
+    else:
+        return gdc(B, A % B)
 
 def chk_pn(num):
 
-    if num is 1:
-        return True
+    flag = True
+    if num  <= 3:
+        pass
+
+    else:    
+        for i in range(2, int(math.sqrt(num)) + 1):
+            if num % i == 0:
+                flag = False
+                break
+    return flag
+
+
+def mk_factor(num):
+
+    max_divisor = int(math.sqrt(num))+1
+    divisor = 2
+    factor_list = [1]
+
+    while divisor <= max_divisor:
+        if num % divisor == 0:
+            factor_list.append(divisor)
+            num /= divisor
+        else:
+            divisor += 1
     
-    for i in range(int(math.sqrt(num)) + 1):
+    factor_list.append(num) #割り残った数を約数に含める事を忘れない
+    return factor_list
 
-print(gdc(A, B))
-
+GDC = gdc(A, B)
+pn_factor = [i for i in mk_factor(GDC) if chk_pn(i) is True]
+# print(pn_factor)
+print(len(set(pn_factor)))
