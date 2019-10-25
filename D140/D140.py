@@ -53,15 +53,9 @@ def execute(arr, cnt_h, K):
     max_rotation = len(arr)//2
     # 全てLになるか反転回数がKに到達するかで終了
     if max_rotation <= K:
-        if arr[-1] == 'R':
-            cnt_h += max_rotation*2 -1
-        elif arr[-1] == 'L':
-            cnt_h += max_rotation*2
+        cnt_h += len(arr) - 1
     else:
-        if arr[2*K] == 'R':
-            cnt_h += 2*K - 1
-        elif arr[2*K] == 'L':
-            cnt_h += 2*K
+        cnt_h += 2*K
 
     return cnt_h
 

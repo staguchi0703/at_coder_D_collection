@@ -40,7 +40,57 @@
   
 * ABC 140 D 
   * 方針
+    * 同じ方向を向いているグループをひとまとめにする
+    * 同じグループにまとめられた人は幸せ
+    * 一番左の人が左向きになるようにする。（右を向いてたら全反転する）
+    * 一番左端のひとはどうやっても不幸
+    * 圧縮するとLRLR・・・・・交互のリストになっているから、Rを反転できる回数＊2が幸せ増加数となる
+      * ただし、右端がLの時とRの時ですべてのRを反転させてLにした際の連続数が1ズレてくるので注意
+
   * 実装
+    * リストを圧縮したあとに幸せ数を数え上げるのは、わざわざ反転したリストをつくらなくても要素数の偶数奇数と操作できる回数で場合分けして数字計算でもとめられる。リストの反転操作を行わなくていいのでそのほうが早い。
+
+``` python
+     def compress(arr):
+    """圧縮して消えた人はhappy"""
+    cnt_h = 0
+    new_arr = []
+    comp_arr = ['L']
+
+    #最初は先頭をLにする　この回転はノーカン
+    if arr[0] == 'R':
+        for item in arr:
+            if item == 'L':
+                new_arr.append('R')
+            else:
+                new_arr.append('L')
+
+            prev_item = item
+    else:
+        new_arr = arr
+    # 圧縮操作と圧縮されたかずを数える
+
+    for i in range(1, N):
+        if new_arr[i - 1] == new_arr[i]:
+            cnt_h += 1
+        else:
+            comp_arr.append(new_arr[i])
+
+    return [comp_arr, cnt_h] 
+
+
+def execute(arr, cnt_h, K):
+    # 境界を全て反転するために必要な操作回数
+    max_rotation = len(arr)//2
+    # 全てLになるか反転回数がKに到達するかで終了
+    if max_rotation <= K:
+        cnt_h += len(arr) - 1
+    else:
+        cnt_h += 2*K
+
+    return cnt_h
+```
+
 * ABC 139 D 
   * 方針 
   * 実装
