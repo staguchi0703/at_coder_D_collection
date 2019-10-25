@@ -21,6 +21,10 @@ import math
 A, B = [int(item) for item in input().split()]
 
 def gdc(A, B):
+    """最大公約数を求める
+    再帰関数にするよりWhileでしたほうが前回の値を覚えているので早いらしい
+    TODO whileで書き直す
+    """
     if B == 0:
         return A
     else:
