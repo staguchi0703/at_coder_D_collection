@@ -16,6 +16,13 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
-num_list = [int(item) for item in input().split()]
-print('C', num_list)
+N = int(input())
+print((N-1)*N //2 )
 
+
+# 以下のように余りを足し合わせるとTEL
+# res = 0
+# for i in range(1, N +1):
+#     if i < N:
+#         res += i
+# print(res)
