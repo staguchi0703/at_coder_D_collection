@@ -16,6 +16,10 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
-num_list = [int(item) for item in input().split()]
-print('E', num_list)
+N = [int(item) for item in input().split()]
+print(N)
+# tree = [[int(item) for item in input().split()] for _ in range(1, N)]
+# act_list = [[int(item) for item in input().split()] for _ in range(Q)]
 
+# print(tree)
+# print(act_list)
