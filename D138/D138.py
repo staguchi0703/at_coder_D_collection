@@ -16,6 +16,56 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
-num_list = [int(item) for item in input().split()]
-print('E', num_list)
+N, Q = [int(item) for item in input().split()]
 
+tree_list = [input() for _ in range(1,N)]
+tree_list_int = [list(map(int,i.split())) for i in tree_list]
+action_list = [input() for _ in range(Q)]
+action_list_int = [list(map(int, i.split())) for i in action_list]
+
+print('tree', tree_list_int)
+print('act', action_list_int)
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.cnt = 0
+        self.child = None
+
+
+class tree:
+    def __init__(self, tree_list_int):
+        self.node_list = [Node(i) for i in range(1,N+1)]
+
+        for i, j in tree_list_int:
+            node = self.node_list[i-1]
+            node.child = []
+            node.child.append(Node(j))
+
+
+    def adder(self, node, val):
+        node.cnt += val
+
+        if not node.child:
+            return node.cnt
+
+        for next_child in node.child:
+            self.adder(next_child, val)
+
+                
+
+        
+ins=tree(tree_list_int)
+
+for pos, val in action_list_int:
+    for node in ins.node_list:
+        if node.data == pos:
+            ins.adder(node, val)
+
+
+for i in range(0, N):
+    print(i+1, ins.node_list[i].cnt)
+
+
+
+# %%
