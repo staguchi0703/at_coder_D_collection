@@ -23,24 +23,19 @@ tree_list_int = [list(map(int,i.split())) for i in tree_list]
 action_list = [input() for _ in range(Q)]
 action_list_int = [list(map(int, i.split())) for i in action_list]
 
-print('tree', tree_list_int)
-print('act', action_list_int)
-
 class Node:
     def __init__(self, data):
         self.data = data
         self.cnt = 0
-        self.child = None
+        self.child = []
 
 
 class tree:
-    def __init__(self, tree_list_int):
+    def __init__(self, N, tree_list_int):
         self.node_list = [Node(i) for i in range(1,N+1)]
 
         for i, j in tree_list_int:
-            node = self.node_list[i-1]
-            node.child = []
-            node.child.append(Node(j))
+            self.node_list[i-1].child.append(self.node_list[j-1])
 
 
     def adder(self, node, val):
@@ -55,17 +50,14 @@ class tree:
                 
 
         
-ins=tree(tree_list_int)
+ins=tree(N, tree_list_int)
 
 for pos, val in action_list_int:
-    for node in ins.node_list:
-        if node.data == pos:
-            ins.adder(node, val)
+    ins.adder(ins.node_list[pos-1], val)
 
+res = str(ins.node_list[0].cnt)
+for i in range(1, N):
+    res += ' ' + str(ins.node_list[i].cnt)
 
-for i in range(0, N):
-    print(i+1, ins.node_list[i].cnt)
+print(res)
 
-
-
-# %%
