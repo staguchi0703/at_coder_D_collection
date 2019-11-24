@@ -4,12 +4,17 @@
 * D問題は計算量の見積もりと、計算量を削減するアルゴリズムを知っていることがポイント
 
 ## 問題へのリンク
-* [ABC 142 D](https://atcoder.jp/contests/abc142/tasks/abc142_d)
-* [ABC 141 D](https://atcoder.jp/contests/abc141/tasks/abc141_d)
-* [ABC 140 D](https://atcoder.jp/contests/abc140/tasks/abc140_d)
-* [ABC 139 D](https://atcoder.jp/contests/abc139/tasks/abc139_d)
-* [ABC 138 D](https://atcoder.jp/contests/abc138/tasks/abc138_d)
-* [ABC 137 D](https://atcoder.jp/contests/abc137/tasks/abc137_d)
+* ABC D問題
+  * [ABC 142 D](https://atcoder.jp/contests/abc142/tasks/abc142_d)
+  * [ABC 141 D](https://atcoder.jp/contests/abc141/tasks/abc141_d)
+  * [ABC 140 D](https://atcoder.jp/contests/abc140/tasks/abc140_d)
+  * [ABC 139 D](https://atcoder.jp/contests/abc139/tasks/abc139_d)
+  * [ABC 138 D](https://atcoder.jp/contests/abc138/tasks/abc138_d)
+  * [ABC 137 D](https://atcoder.jp/contests/abc137/tasks/abc137_d)
+
+* D問題の練習になる問題
+  * [Disco2020 B](https://atcoder.jp/contests/ddcc2020-qual/tasks/ddcc2020_qual_b)
+  * [ABC 146 C](https://atcoder.jp/contests/abc146/tasks/abc146_c)
 
 ## 回答
 
@@ -25,7 +30,7 @@
   * おまけ
     * 最小公倍数は ${A  B / gdc}$
 
-* ABC 141 D 
+* ABC 141 D
   *  方針
      *  N個の商品に対してM個の商品券を使う際、一枚づつ常に最大値の商品に使用する。
      *  価格が変更された際の並び替えのために、優先度キューアルゴリズム（ヒープソート）を使用する
