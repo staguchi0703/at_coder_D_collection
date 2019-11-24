@@ -42,10 +42,10 @@ class tree:
         node.cnt += val
 
         if not node.child:
-            return node.cnt
-
-        for next_child in node.child:
-            self.adder(next_child, val)
+            return
+        else:
+            for next_child in node.child:
+                self.adder(next_child, val)
 
                 
 
