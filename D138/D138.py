@@ -16,10 +16,28 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
-N = [int(item) for item in input().split()]
-print(N)
-# tree = [[int(item) for item in input().split()] for _ in range(1, N)]
-# act_list = [[int(item) for item in input().split()] for _ in range(Q)]
+N, Q = [int(item) for item in input().split()]
+tree = [[int(item) for item in input().split()] for _ in range(1, N)]
+act_list = [[int(item) for item in input().split()] for _ in range(Q)]
 
-# print(tree)
-# print(act_list)
+print(tree)
+print(act_list)
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.cnt = 0
+        self.child_list = []
+
+class my_tree:
+    def __init__(self, N, tree):
+        generated_node_list = []
+
+        for i in range(1, N+1):
+            generated_node_list.append(Node(i))
+
+        for i, j in tree:
+            generated_node_list[i-1].child_list.append(generated_node_list[j-1])
+
+            
+ins = my_tree(N, tree)
