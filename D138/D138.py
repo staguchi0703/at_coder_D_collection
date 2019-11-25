@@ -19,46 +19,34 @@ sys.stdin=f
 N, Q = [int(item) for item in input().split()]
 
 tree_list = [input() for _ in range(1,N)]
-tree_list_int = [list(map(int,i.split())) for i in tree_list]
-action_list = [input() for _ in range(Q)]
-action_list_int = [list(map(int, i.split())) for i in action_list]
+tree_list_int = [[int(k) for k in i.split()] for i in tree_list]
+query_list = [input() for _ in range(Q)]
+query_list_int = [[int(k) for k in i.split()]  for i in query_list]
 
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.cnt = 0
-        self.child = []
+val_list = [0 for _ in range(N)]
+node_index = [[] for _ in range(N)]
+cumulated_sum_list = [0] * N
 
 
-class tree:
-    def __init__(self, N, tree_list_int):
-        self.node_list = [Node(i) for i in range(1,N+1)]
+for a, b in tree_list_int:
+    node_index[a -1].append(b - 1)
+    node_index[b -1].append(a - 1)
 
-        for i, j in tree_list_int:
-            self.node_list[i-1].child.append(self.node_list[j-1])
+for index, val in query_list_int:
+    val_list[index-1] += val
 
+def dfs(child_index, pairent_index):
+    for child in node_index[child_index]:
 
-    def adder(self, node, val):
-        node.cnt += val
+        if child == pairent_index:
+            continue
 
-        if not node.child:
-            return
-        else:
-            for next_child in node.child:
-                self.adder(next_child, val)
+        val_list[child] += val_list[child_index]
+        dfs(child, child_index)
 
-                
+    return val_list
 
-        
-ins=tree(N, tree_list_int)
+res = dfs(0, -1) #0はルート、-1は親を持っていない事
 
-for pos, val in action_list_int:
-    ins.adder(ins.node_list[pos-1], val)
-
-res = str(ins.node_list[0].cnt)
-for i in range(1, N):
-    res += ' ' + str(ins.node_list[i].cnt)
-
-print(res)
-
-# TLE と　RE
+for i in res:
+    print(i)
