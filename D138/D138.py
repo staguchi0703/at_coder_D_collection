@@ -18,35 +18,34 @@ sys.stdin=f
 # 以下ペースト可
 N, Q = [int(item) for item in input().split()]
 
-tree_list = [input() for _ in range(1,N)]
-tree_list_int = [[int(k) for k in i.split()] for i in tree_list]
-query_list = [input() for _ in range(Q)]
-query_list_int = [[int(k) for k in i.split()]  for i in query_list]
+tree_list = [input().split() for _ in range(1,N)]
+
+query_list = [input().split() for _ in range(Q)]
+query_list_int = [[int(k) for k in i]  for i in query_list]
 
 val_list = [0 for _ in range(N)]
-node_index = [[] for _ in range(N)]
-cumulated_sum_list = [0] * N
+linkde_node_list = [[] for _ in range(N)]
 
+for a, b in tree_list:
+    linkde_node_list[int(a) -1].append(int(b) - 1)
+    linkde_node_list[int(b) -1].append(int(a) - 1)
 
-for a, b in tree_list_int:
-    node_index[a -1].append(b - 1)
-    node_index[b -1].append(a - 1)
 
 for index, val in query_list_int:
     val_list[index-1] += val
 
-def dfs(child_index, pairent_index):
-    for child in node_index[child_index]:
-
+def dfs(node_index, pairent_index):
+    print('node_index',node_index+1)
+    for child in linkde_node_list[node_index]:
+        print('A',child)
         if child == pairent_index:
             continue
-
-        val_list[child] += val_list[child_index]
-        dfs(child, child_index)
+        print('B', child)
+        val_list[child] += val_list[node_index]
+        dfs(child, node_index)
 
     return val_list
 
-res = dfs(0, -1) #0はルート、-1は親を持っていない事
+res = dfs(0, -1) 
 
-for i in res:
-    print(i)
+print(*res)
